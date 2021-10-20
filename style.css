@@ -163,6 +163,10 @@ ul.menu li a:hover{
 .content a{
   text-decoration: none;
 }
+.content h1{
+  text-align: center;
+}
+
 .films_block{
   margin-bottom: 5%;
 }

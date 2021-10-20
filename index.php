@@ -8,12 +8,16 @@
   //$mysqli->set_charset('utf8');
   mysqli_query($mysqli, "set name utf8mb4");
 
-  $result = mysqli_query($mysqli, 'SELECT * FROM news');
-
+  
+  $result = mysqli_query($mysqli, 'SELECT * FROM main WHERE type = "films"');
   $rows = mysqli_fetch_all($result, MYSQLI_ASSOC);
   
+  $result2 = mysqli_query($mysqli, 'SELECT * FROM main WHERE type = "series"');
+  $rows2 = mysqli_fetch_all($result2, MYSQLI_ASSOC);
   //print_r($rows);
-  
+
+  $result3 = mysqli_query($mysqli, 'SELECT * FROM news');
+  $rows3 = mysqli_fetch_all($result3, MYSQLI_ASSOC);
   $mysqli->close();
 
 ?>
@@ -30,91 +34,64 @@
 <body>
   
   <div class="main">
-<div class="header">
-    <div class="logo">
-      <div class="logo_text">
-        <h1><a href="/">КиноБлок</a></h1>
-           <h2>Все новинки здесь!</h2>
-      </div>
-    </div>
-    <div class="menubar">
-        <ul class="menu">
-          <li class="selected"><a href="index.php">Главная</a></li>
-          <li><a href="films.php">Фильмы</a></li>
-          <li><a href="series.php">Сериалы</a></li>
-          <li><a href="rating.php">Рейтинг фильмов</a></li>
-          <li><a href="contact.php">Контакты</a></li>
-        </ul>
-    </div>
-</div>
-    <!-- Основной контент -->
-    <div class="site_content"> 
-      <div class="sidebar_container">
-        <!-- Первый блок поиск -->
-        <div class="sidebar">
-          <h2>Поиск</h2>
-            <form method="post" action="#" id="search_form">
-              <input type="search" name="search_field" placeholder="ваш запрос" />
-              <input type="submit" class="btn" value="найти" />
-            </form>
-        </div>
-        <!-- второй блок справа вход-->
-        <div class="sidebar">
-          <h2>Вход</h2>
-          <form method="post" action="#" id="login">
-            <input type="text" name="login_field" placeholder="логин" />
-            <input type="password" name="password_field" placeholder="пароль" />
-            <input type="submit" class="btn" value="войти" />
-            <div class="lables_passreg_text">
-              <span><a href="#">забыли пароль?</a></span> | <span><a href="#">регистрация</a></span>
-            </div>
-          </form>
-        </div>
-        <!-- третий блок справа новости -->
-        <div class="sidebar">
-          <h2>Новости</h2>
-          <span>23.09.2021</span>
-          <p>Мы запустили расширенный поиск</p>
-          <a href="#">читать</a>
-        </div>
-        <!-- четвертый блок рейтинг фильмов -->
-        <div class="sidebar">
-          <h2>Рейтинг фильмов</h2>
-          <ul>
-            <li><a href="show_cruella.php">Круэлла</a><span class="rating_sidebar">7.4</span></li>
-            <li><a href="show_palma.php">Пальма</a><span class="rating_sidebar">7.3</span></li>
-            <li><a href="show_assasin.php">Ассасин:битва миров</a><span class="rating_sidebar">6.2</span></li>
-            <li><a href="show_devitaev.php">Девятаев</a><span class="rating_sidebar">6.2</span></li>
-          </ul>
-        </div>
-      </div>
-      <!-- Основной контент по середине -->
-      <div class="content">
-        <h1>Новые фильмы</h1>
-        <div class="films_block">
-         <a href="show_cruella.php"><img src="img/cruela3.jpg" alt="Круэлла"></a>
+<!-- Шапка страницы --> 
+  <?php
+    $page = 'index';
+    include "header.php";
+  ?>
+  
+<!-- Основной контент -->
+<div class="site_content"> 
+  <div class="sidebar_container">
+<!-- Первый блок поиск -->
+    <?php
+      include "query.php";
+    ?>
+<!-- второй блок справа вход-->
+    <?php
+      include "entry.php";
+    ?>
+<!-- третий блок справа новости -->
+    <?php
+      include "anonsnews.php";
+    ?>
+<!-- четвертый блок рейтинг фильмов -->
+    <?php
+      include "ratingmain.php";
+    ?>
+<!-- Основной контент по середине -->
+  <div class="content">
+    <h1>Новые фильмы</h1>
+    <div class="films_block">
+    <?php foreach($rows as $row):?>
+      <a href="<?php echo $row['linkpage'];?>"><img src="img/<?php echo $row['img'];?>" alt="Круэлла"></a>
+         <!--<a href="show_cruella.php"><img src="img/cruela3.jpg" alt="Круэлла"></a>
          <a href="show_assasin.php"><img src="img/Assasin.jpg" alt="Ассасин:битва миров"></a>
          <a href="show_devitaev.php"><img src="img/devitaev2.jpg" alt="Девятаев"></a>
-         <a href="show_palma.php"><img src="img/palma.jpg" alt="Пальма"></a>
-        </div>
-        <h1>Новые сериалы</h1>
-        <div class="films_block">
-         <a href="show_continent.php"><img src="img/continent.jpg" alt="Боевой континент"></a>
+         <a href="show_palma.php"><img src="img/palma.jpg" alt="Пальма"></a>-->
+    <?php endforeach;?>
+    </div>
+    <h1>Новые сериалы</h1>
+    <div class="films_block">
+      <?php foreach($rows2 as $row2):?>  
+        <a href="<?php echo $row2['linkpage'];?>"><img src="img/<?php echo $row2['img'];?>" alt="Круэлла"></a>
+         <!--<a href="show_continent.php"><img src="img/continent.jpg" alt="Боевой континент"></a>
          <a href="show_hotel.php"><img src="img/hotel.jpg" alt="Отель феникс" ></a>
          <a href="show_polet.php"><img src="img/polet.jpg" alt="Полёт"></a>
-         <a href="show_obitel.php"><img src="img/obitel.jpg" alt="Обитель"></a>
-        </div>
-      <!-- Пост на странице --> 
-      <div class="posts"><?php foreach($rows as $row):?>
-         <hr>
-         <h2><a href="about_palma.php"><?php echo $row['title'];?></a></h2>
-         <div class="posts_content">
-          <p>
-          <?php echo $row['textnew'];?>
+         <a href="show_obitel.php"><img src="img/obitel.jpg" alt="Обитель"></a>-->
+      <?php endforeach;?>
+    </div>
+<!-- Пост на странице --> 
+  <div class="posts"><?php foreach($rows3 as $row3):?>
+    <hr>
+    <h2><a href="about_palma.php"><?php echo $row3['title'];?></a></h2>
+    <div class="posts_content">
+    <p>
+    <?php echo $row3['textnew'];?>
             <!--Фильм «Пальма» – пожалуй, самое эмоциональное и семейное кино последнего времени, и тот редкий случай, когда постановщики во главе с практически дебютантом Александром Домогаровым-младшим не стесняются выводить на первый план животных и детей, с которыми, как известно, всегда трудно конкурировать профессиональным актерам. За проектом «Пальма» мы следили с самого начала и вместе с его авторами вспоминаем, как проходили съемки этого действительно неординарного для современного российского кино фильма.-->
-          </p>
-         </div>
-         <p><a href="<?php echo $row['linknew'];?>">читать</a></p>
+    </p>
+  </div>
+    <p><a href="<?php echo $row3['linknew'];?>">читать</a></p>
          <!--<hr>
          <h2><a href="news_festival.php">Канны подводят итоги и рассказывают о драмах телевизионного закулисья</a></h2>
          <div class="posts_content">
@@ -124,20 +101,15 @@
           </p>
          </div>
          <p><a href="news_festival.php">читать</a></p>-->
-         <?php endforeach;?>
-        </div>  
-      </div>
-      </div>
-    <!-- Подвал сайта -->
-      <div class="footer">
-        <p>
-          <a href="index.php">Главная</a> |
-          <a href="films.php">Фильмы</a> |
-          <a href="series.php">Сериалы</a> |
-          <a href="rating.php">Рейтинг фильмов</a> |
-          <a href="contact.php">Контакты</a> 
-        </p>
-      </div> 
-    </div>
+    <?php endforeach;?>
+    </div>  
+  </div>
+</div>
+<!-- Подвал сайта -->
+  <?php
+    include "footer.php";
+  ?>
+
+</div>
 </body>
 </html>

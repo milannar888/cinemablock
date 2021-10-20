@@ -12,15 +12,15 @@
   
 <div class="main">
 <!-- Шапка страницы -->
-    <?php
-      $page = 'contact';
-      include "header.php";
-    ?>
+  <?php
+    $page = 'index';
+    include "header.php";
+  ?>
 <!-- Основной контент -->
-    <div class="site_content"> 
-      <div class="sidebar_container">
+  <div class="site_content"> 
+    <div class="sidebar_container">
 <!-- Первый блок поиск -->
-    <?php
+<?php
       include "query.php";
     ?>
 <!-- второй блок справа вход-->
@@ -35,20 +35,14 @@
     <?php
       include "ratingmain.php";
     ?>
-<!-- Основной контент по середине форма заполнение контактов -->
+<!-- Основной контент по середине страница о фильмах -->
     <div class="content">
-      <h1>Контакты</h1>
-      <p>Отправьте ваш отзыв о портале КиноМонстр</p>
-      <div class="send send_contact">
-        <form id="contact" method="POST" action="#">
-          <input type="text" name="review_name" placeholder="ваше имя">
-          <input type="text" name="review_email" placeholder="ваш email">
-          <textarea name="review_text"></textarea>
-          <input class="btn" type="submit" value="отправить">
-        </form>
-      </div>
-    </div>
-  </div>
+      <h1>Регистрация</h1>
+      <div class="info_film">
+
+     </div >   
+    </div > 
+  </div >
 <!-- Подвал сайта -->
     <?php
       include "footer.php";
