@@ -8,7 +8,6 @@
   //print_r($rows);
   
   $mysqli->close();
-  
 
 ?>
 <!DOCTYPE html>

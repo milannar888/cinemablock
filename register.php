@@ -40,15 +40,15 @@
       <h1>Регистрация</h1>
       <div class="info_film">
       <div class="send send_contact">
-        <form id="contact" method="POST" action="<?php echo $_SERVER['PHP_SELF'];?>">
+        <form  method="POST" action="lk.php">
         <input type="text" name="name" placeholder="Ваше имя">
         <input type="email" name="email" placeholder="Ваш email">
-        <input type="phone" name="phone" placeholder="Ваш телефон">
-        <input type="password1" name="pass" placeholder="Пароль">
-        <input type="password1" name="pass2" placeholder="Подтвердите пароль">
+        <input type="number" name="phone" placeholder="Ваш телефон" maxlength="12">
+        <input type="password" name="pass" placeholder="Пароль">
+        <input type="password" name="pass2" placeholder="Подтвердите пароль" >
+        <input class="button" type="submit" value="Зарегистрироваться">
         </form>
       </div>
-      <div class="button"><a href="#">Зарегистрироваться</a></div>
      </div >   
     </div > 
     </div >

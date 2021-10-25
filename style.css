@@ -12,7 +12,7 @@ p{
   padding: 0 0 20px 0;
   line-height: 1.7em;
 }
-input[type="text"], input[type="password1"], input[type="password"], input[type="search"], input[type="email"], input[type="phone"]{
+input[type="text"], input[type="pass"], input[type="password"], input[type="search"], input[type="email"], input[type="number"]{
   color: #5d5d5d;
   width: 60%;
   padding: 8px;
@@ -225,7 +225,7 @@ margin-bottom: 4%;
 .send{
   margin-bottom: 4%;
 }
-.send input[type="text"], textarea, input[type="email"], input[type="password1"], input[type="phone"]{
+.send input[type="text"], textarea, input[type="email"], input[name="pass"], input[name="pass2"], input[type="number"]{
   width: 98%;
   border: solid 1px #c3c3c3;
   margin-bottom: 2%;
@@ -244,7 +244,7 @@ margin-bottom: 4%;
   cursor: pointer;
 }
 /* Стили для формы Контакты */
-.send_contact input[type="text"], input[type="email"], input[type="password1"], input[type="phone"] {
+.send_contact input[type="text"], input[type="email"], input[name="pass"], input[name="pass2"],input[type="number"] {
   width: 500px;
 }
 
@@ -376,7 +376,7 @@ and (max-device-width: 568px){
     float: left;
     margin-left: 6%;
   }
-  .sidebar input[type="password"]{
+  .sidebar input[name="password_field"]{
     width: 54%;
     margin-right: 3%;
     margin-left: 2%;
