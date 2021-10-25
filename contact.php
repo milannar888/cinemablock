@@ -40,7 +40,7 @@
       <h1>Контакты</h1>
       <p>Отправьте ваш отзыв о портале КиноМонстр</p>
       <div class="send send_contact">
-        <form id="contact" method="POST" action="#">
+        <form id="contact" method="POST" action="<?php echo $_SERVER['PHP_SELF'];?> ">
           <input type="text" name="review_name" placeholder="ваше имя">
           <input type="text" name="review_email" placeholder="ваш email">
           <textarea name="review_text"></textarea>

@@ -1,14 +1,6 @@
 <?php
-  $mysqli = mysqli_connect('localhost', 'root', 'root', 'cinemablock');
-
-  if(mysqli_connect_error()){
-    printf("Соединение не установлено", mysqli_connect_error());
-    exit();
-  }
-  //$mysqli->set_charset('utf8');
-  mysqli_query($mysqli, "set name utf8mb4");
-
-  
+  include "bd.php";
+ 
   $result = mysqli_query($mysqli, 'SELECT * FROM main WHERE type = "films"');
   $rows = mysqli_fetch_all($result, MYSQLI_ASSOC);
   
