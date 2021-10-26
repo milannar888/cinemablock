@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Хост: 127.0.0.1:3306
--- Время создания: Окт 20 2021 г., 00:59
+-- Время создания: Окт 26 2021 г., 07:14
 -- Версия сервера: 8.0.19
 -- Версия PHP: 7.1.33
 
@@ -144,6 +144,28 @@ INSERT INTO `rating` (`id`, `img`, `name`, `year`, `rating`, `linkrating`) VALUE
 -- --------------------------------------------------------
 
 --
+-- Структура таблицы `register`
+--
+
+CREATE TABLE `register` (
+  `id` int NOT NULL,
+  `username` varchar(150) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
+  `email` varchar(50) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
+  `phone` int NOT NULL,
+  `pass` varchar(32) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL
+) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+
+--
+-- Дамп данных таблицы `register`
+--
+
+INSERT INTO `register` (`id`, `username`, `email`, `phone`, `pass`) VALUES
+(1, 'Anna', 'riston@mail.ru', 83939566, '12345'),
+(2, 'Anna', 'riston@mail.ru', 839394566, '123456');
+
+-- --------------------------------------------------------
+
+--
 -- Структура таблицы `series`
 --
 
@@ -199,6 +221,12 @@ ALTER TABLE `rating`
   ADD PRIMARY KEY (`id`);
 
 --
+-- Индексы таблицы `register`
+--
+ALTER TABLE `register`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- Индексы таблицы `series`
 --
 ALTER TABLE `series`
@@ -237,6 +265,12 @@ ALTER TABLE `news`
 --
 ALTER TABLE `rating`
   MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+
+--
+-- AUTO_INCREMENT для таблицы `register`
+--
+ALTER TABLE `register`
+  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT для таблицы `series`
