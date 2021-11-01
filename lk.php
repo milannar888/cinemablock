@@ -1,42 +1,10 @@
 <?php
+session_start();
 
-$username = filter_var(trim($_POST['name']),
-FILTER_SANITIZE_STRING);
-$email = filter_var(trim($_POST['email']),
-FILTER_SANITIZE_STRING);
-$number = filter_var(trim($_POST['phone']),
-FILTER_SANITIZE_STRING);
-$pass = filter_var(trim($_POST['pass']),
-FILTER_SANITIZE_STRING);
-$pass2 = filter_var(trim($_POST['pass2']),
-FILTER_SANITIZE_STRING);
-
-if(mb_strlen($username) < 3 || mb_strlen($username) > 30){
-  echo 'Недопустимая длина имени';
-  exit();
-}if(mb_strlen($email) < 3 || mb_strlen($email) > 30){
-  echo 'Недопустимая длина email';
-  exit();
-} if(mb_strlen($number) < 6 || mb_strlen($number) > 14){
-  echo 'Недопустимая длина телефона';
-  exit();
-}if(mb_strlen($pass) < 2 || mb_strlen($pass) > 30){
-  echo 'Недопустимая длина пароля';
-  exit();
-}
-
-if($pass != $pass2){
-  echo "Пароли несовпадают";
-  exit;
-}
-
-  include "bd.php";
-
-  $mysqli -> query ("INSERT INTO `register` (`username`, `email`, `phone`, `pass`) VALUES ('$username', '$email', '$number', '$pass')");
-
-  $mysqli->close();
-
-?> 
+/*if(!$_SESSION['user']){
+  header('Location: avto.php');
+}*/
+?>
 
 <!DOCTYPE html>
 <html lang="ru">
@@ -79,8 +47,10 @@ if($pass != $pass2){
     <div class="content">
       <h1>Личный кабинет</h1>
       <div class="info_film">
-      
-      
+        <h2>Логин: <?php echo $_SESSION['user']['login']; ?></h2>
+        <a href="#">Email: <?php echo $_SESSION['user']['email'];?> </a>
+        <p>Телефон: <?php echo $_SESSION['user']['phone'];?></p>
+        <div class="button"><a href="vendor/exit.php">Выход</a></div >
      </div >   
     </div > 
     </div >

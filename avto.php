@@ -5,6 +5,7 @@
     header('Location: lk.php');
   }
 ?>
+
 <!DOCTYPE html>
 <html lang="ru">
 <head>
@@ -15,8 +16,7 @@
   <title>КиноБлок</title>
   <link rel="stylesheet" href="style.css">
 </head>
-<body>
-  
+<body> 
 <div class="main">
 <!-- Шапка страницы -->
   <?php
@@ -44,25 +44,21 @@
     ?>
 <!-- Основной контент по середине страница о фильмах -->
     <div class="content">
-      <h1>Регистрация</h1>
+      <h1>Вход</h1>
       <div class="info_film">
       <div class="send send_contact">
-<!-- Форма регистрации-->
-        <form  method="POST" action="vendor/registerbd.php">
-          <?php 
+<!-- Форма авторизации-->
+        <form  method="POST" action="vendor/avtobd.php">
+        <?php 
            if($_SESSION['message']){
             echo '<p class="mess">'. $_SESSION['message'] .'</p>';
            }
             unset($_SESSION['message']);
-           
           ?>
         <input type="text" name="login" placeholder="Введите логин">
-        <input type="email" name="email" placeholder="Введите email">
-        <input type="phone" name="phone" placeholder="Введите телефон" maxlength="12">
         <input type="password" name="pass" placeholder="Пароль">
-        <input type="password" name="pass2" placeholder="Подтвердите пароль" >
-        <p>У вас уже есть аккаунт? -  <a href='avto.php'>авторизируйтесь</a></p>
-        <input class="button" type="submit" value="Зарегистрироваться"> 
+        <p>У вас еще нет аккаунта? -  <a href='register.php'>зарегистрируйтесь</a></p>
+        <input class="button" type="submit" value="Войти">       
         </form>
       </div>
      </div >   
