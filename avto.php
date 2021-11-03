@@ -55,7 +55,7 @@
            }
             unset($_SESSION['message']);
           ?>
-        <input type="text" name="login" placeholder="Введите логин">
+        <input type="text" name="username" placeholder="Введите логин">
         <input type="password" name="pass" placeholder="Пароль">
         <p>У вас еще нет аккаунта? -  <a href='register.php'>зарегистрируйтесь</a></p>
         <input class="button" type="submit" value="Войти">       

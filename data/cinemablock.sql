@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Хост: 127.0.0.1:3306
--- Время создания: Окт 26 2021 г., 07:14
+-- Время создания: Ноя 03 2021 г., 19:26
 -- Версия сервера: 8.0.19
 -- Версия PHP: 7.1.33
 
@@ -149,19 +149,23 @@ INSERT INTO `rating` (`id`, `img`, `name`, `year`, `rating`, `linkrating`) VALUE
 
 CREATE TABLE `register` (
   `id` int NOT NULL,
-  `username` varchar(150) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
-  `email` varchar(50) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
-  `phone` int NOT NULL,
-  `pass` varchar(32) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL
-) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+  `username` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci DEFAULT NULL,
+  `email` varchar(150) CHARACTER SET utf8 COLLATE utf8_general_ci DEFAULT NULL,
+  `phone` varchar(100) CHARACTER SET utf8 COLLATE utf8_general_ci DEFAULT NULL,
+  `pass` varchar(250) CHARACTER SET utf8 COLLATE utf8_general_ci DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
 -- Дамп данных таблицы `register`
 --
 
 INSERT INTO `register` (`id`, `username`, `email`, `phone`, `pass`) VALUES
-(1, 'Anna', 'riston@mail.ru', 83939566, '12345'),
-(2, 'Anna', 'riston@mail.ru', 839394566, '123456');
+(2, 'Makc', 'maks@mail.ru', '89165211314', '2e65f2f2fdaf6c699b223c61b1b5ab89'),
+(3, 'Анна', 'riston@mail.ru', '8945612371', 'c6f057b86584942e415435ffb1fa93d4'),
+(4, 'Миша', 'window888@mail.ru', '891745562336', '68053af2923e00204c3ca7c6a3150cf7'),
+(5, 'Анна', 'riston@mail.ru', '89165211314', '68053af2923e00204c3ca7c6a3150cf7'),
+(6, 'Тетрис', 'gfg@mail.ru', '8917456123', '2e65f2f2fdaf6c699b223c61b1b5ab89'),
+(7, 'Катя', 'drgftgy@com', '4778589969', '6f2268bd1d3d3ebaabb04d6b5d099425');
 
 -- --------------------------------------------------------
 
@@ -270,7 +274,7 @@ ALTER TABLE `rating`
 -- AUTO_INCREMENT для таблицы `register`
 --
 ALTER TABLE `register`
-  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
 -- AUTO_INCREMENT для таблицы `series`

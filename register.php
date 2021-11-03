@@ -49,20 +49,21 @@
       <div class="send send_contact">
 <!-- Форма регистрации-->
         <form  method="POST" action="vendor/registerbd.php">
-          <?php 
-           if($_SESSION['message']){
-            echo '<p class="mess">'. $_SESSION['message'] .'</p>';
-           }
-            unset($_SESSION['message']);
-           
-          ?>
-        <input type="text" name="login" placeholder="Введите логин">
+          
+        <input type="text" name="username" placeholder="Введите логин">
         <input type="email" name="email" placeholder="Введите email">
         <input type="phone" name="phone" placeholder="Введите телефон" maxlength="12">
         <input type="password" name="pass" placeholder="Пароль">
         <input type="password" name="pass2" placeholder="Подтвердите пароль" >
         <p>У вас уже есть аккаунт? -  <a href='avto.php'>авторизируйтесь</a></p>
         <input class="button" type="submit" value="Зарегистрироваться"> 
+        <?php 
+           if($_SESSION['message']){
+            echo '<p class="mess">'. $_SESSION['message'] .'</p>';
+           }
+            unset($_SESSION['message']);
+           
+          ?>
         </form>
       </div>
      </div >   

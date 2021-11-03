@@ -1,9 +1,9 @@
 <?php
 session_start();
 
-/*if(!$_SESSION['user']){
+if(!$_SESSION['user']){
   header('Location: avto.php');
-}*/
+}
 ?>
 
 <!DOCTYPE html>
@@ -47,9 +47,9 @@ session_start();
     <div class="content">
       <h1>Личный кабинет</h1>
       <div class="info_film">
-        <h2>Логин: <?php echo $_SESSION['user']['login']; ?></h2>
-        <a href="#">Email: <?php echo $_SESSION['user']['email'];?> </a>
-        <p>Телефон: <?php echo $_SESSION['user']['phone'];?></p>
+        <h2>Логин: <?=  $_SESSION['user']['username'] ?></h2>
+        <a href="#">Email: <?= $_SESSION['user']['email'] ?> </a>
+        <p>Телефон: <?= $_SESSION['user']['phone'] ?></p>
         <div class="button"><a href="vendor/exit.php">Выход</a></div >
      </div >   
     </div > 

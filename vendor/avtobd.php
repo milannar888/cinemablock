@@ -1,23 +1,23 @@
 <?php
 session_start();
 
-require_once 'bd.php';
+include '../bd.php';
 /*$login = filter_var(trim($_POST['login']),
 FILTER_SANITIZE_STRING);
 $pass = filter_var( trim( md5($_POST['pass'])),
 FILTER_SANITIZE_STRING);*/
-$login = $_POST['login'];
+$username = $_POST['username'];
 $pass = md5($_POST['pass']);
 
 
 
-$check_user = mysqli_query($mysqli, "SELECT * FROM `register` WHERE `login` = '$login' AND `pass` = '$pass'");
+$check_user = mysqli_query($mysqli, "SELECT * FROM `register` WHERE `username` = '$username' AND `pass` = '$pass'");
 if(mysqli_num_rows($check_user) > 0){
   $user = mysqli_fetch_assoc($check_user);
 
   $_SESSION['user'] = [
     "id" => $user['id'],
-    "login" => $user['login'],
+    "username" => $user['username'],
     "email" => $user['email'],
     "phone" => $user['phone'],
   ];

@@ -1,14 +1,14 @@
 <?php
 session_start();
+include '../bd.php';
 
 
-
-/*$login = $_POST['login'];
+/*$username = $_POST['username'];
 $email = $_POST['email'];
 $phone = $_POST['phone'];
 $pass = $_POST['pass'];
 $pass2 = $_POST['pass2'];*/
-$login = filter_var(trim($_POST['login']),
+$username = filter_var(trim($_POST['username']),
 FILTER_SANITIZE_STRING);
 $email = filter_var(trim($_POST['email']),
 FILTER_SANITIZE_STRING);
@@ -32,19 +32,20 @@ FILTER_SANITIZE_STRING);
   echo 'Недопустимая длина пароля';
   exit();
 }*/
-include 'bd.php';
+
 if($pass === $pass2){
   
   $pass = md5($pass);
-  $mysqli -> query("INSERT INTO `register` (`login`, `email`, `phone`, `pass`) VALUES ('$login', '$email', '$phone', '$pass')");
-  $mysqli -> close();
-
+  mysqli_query($mysqli, "INSERT INTO `register` ( `username`, `email`, `phone`, `pass` ) VALUES ('$username', '$email', '$phone', '$pass')");
   $_SESSION['message'] = 'регистрация прошла успешно';
-  header( 'Location: ../index.php' );
+    header( 'Location: ../lk.php' );
+
 }else{
   $_SESSION['message'] = "пароли несовпадают";
   header( 'Location: ../register.php' );
 }
+$mysqli->close(); 
+
   
 
 ?> 
