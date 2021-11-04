@@ -1,4 +1,5 @@
 <?php
+  
   include "bd.php";
 
   $result_main = mysqli_query($mysqli, 'SELECT * FROM rating');

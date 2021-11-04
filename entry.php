@@ -1,7 +1,3 @@
-<?php
-session_start();
-?>
-
 <div class="sidebar">
     <h2>Вход</h2>
     <?php 

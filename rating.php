@@ -1,4 +1,6 @@
 <?php
+  session_start();
+  
   include "bd.php";
 
   $result = mysqli_query($mysqli, 'SELECT * FROM rating');
