@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Хост: 127.0.0.1:3306
--- Время создания: Ноя 03 2021 г., 19:26
+-- Время создания: Ноя 11 2021 г., 08:40
 -- Версия сервера: 8.0.19
 -- Версия PHP: 7.1.33
 
@@ -20,6 +20,38 @@ SET time_zone = "+00:00";
 --
 -- База данных: `cinemablock`
 --
+
+-- --------------------------------------------------------
+
+--
+-- Структура таблицы `comment`
+--
+
+CREATE TABLE `comment` (
+  `id` int NOT NULL,
+  `name` varchar(255) NOT NULL,
+  `comment_id` varchar(2500) NOT NULL,
+  `post_id` int NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Дамп данных таблицы `comment`
+--
+
+INSERT INTO `comment` (`id`, `name`, `comment_id`, `post_id`) VALUES
+(1, 'анна', 'gdfgdfg', 2),
+(2, 'анна', 'gdfgdfg', 2),
+(3, 'анна', 'rrrrrrr', 2),
+(4, 'анна', 'rrrrrrr', 2),
+(5, 'анна', 'rrrrrrr', 2),
+(7, 'света', 'фильм шикарный', 2),
+(8, 'света', 'фильм шикарный', 2),
+(9, 'света', 'фильм шикарный', 2),
+(10, 'света', 'фильм шикарный', 2),
+(11, 'света', 'фильм шикарный', 2),
+(12, 'света', 'фильм шикарный', 2),
+(13, 'света', 'фильм шикарный', 2),
+(14, 'света', 'фильм шикарный', 2);
 
 -- --------------------------------------------------------
 
@@ -75,7 +107,7 @@ INSERT INTO `header` (`id`, `title`, `linktitle`, `page`) VALUES
 --
 
 CREATE TABLE `main` (
-  `id` int NOT NULL,
+  `post_id` int NOT NULL,
   `img` varchar(50) NOT NULL,
   `linkpage` varchar(100) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
   `type` varchar(50) NOT NULL
@@ -85,7 +117,7 @@ CREATE TABLE `main` (
 -- Дамп данных таблицы `main`
 --
 
-INSERT INTO `main` (`id`, `img`, `linkpage`, `type`) VALUES
+INSERT INTO `main` (`post_id`, `img`, `linkpage`, `type`) VALUES
 (1, 'cruela3.jpg', 'show_cruella.php', 'films'),
 (2, 'Assasin.jpg', 'show_assasin.php', 'films'),
 (3, 'devitaev2.jpg', 'show_devitaev.php', 'films'),
@@ -195,6 +227,13 @@ INSERT INTO `series` (`id`, `img`, `maintext`, `linkseries`) VALUES
 --
 
 --
+-- Индексы таблицы `comment`
+--
+ALTER TABLE `comment`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `post_id` (`post_id`);
+
+--
 -- Индексы таблицы `films`
 --
 ALTER TABLE `films`
@@ -210,7 +249,7 @@ ALTER TABLE `header`
 -- Индексы таблицы `main`
 --
 ALTER TABLE `main`
-  ADD PRIMARY KEY (`id`);
+  ADD PRIMARY KEY (`post_id`);
 
 --
 -- Индексы таблицы `news`
@@ -241,6 +280,12 @@ ALTER TABLE `series`
 --
 
 --
+-- AUTO_INCREMENT для таблицы `comment`
+--
+ALTER TABLE `comment`
+  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
+
+--
 -- AUTO_INCREMENT для таблицы `films`
 --
 ALTER TABLE `films`
@@ -256,7 +301,7 @@ ALTER TABLE `header`
 -- AUTO_INCREMENT для таблицы `main`
 --
 ALTER TABLE `main`
-  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+  MODIFY `post_id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 
 --
 -- AUTO_INCREMENT для таблицы `news`
@@ -281,6 +326,16 @@ ALTER TABLE `register`
 --
 ALTER TABLE `series`
   MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+
+--
+-- Ограничения внешнего ключа сохраненных таблиц
+--
+
+--
+-- Ограничения внешнего ключа таблицы `comment`
+--
+ALTER TABLE `comment`
+  ADD CONSTRAINT `comment_ibfk_1` FOREIGN KEY (`post_id`) REFERENCES `main` (`post_id`) ON DELETE RESTRICT ON UPDATE RESTRICT;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

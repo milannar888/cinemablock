@@ -1,5 +1,25 @@
 <?php
-session_start();
+
+include 'bd.php';
+$name = filter_var(trim($_POST['review_name']),
+FILTER_SANITIZE_STRING);
+$comment_id = filter_var(trim($_POST['review_text']),
+FILTER_SANITIZE_STRING);
+
+//$post_id = 2;
+$post_id = mysqli_query($mysqli, "SELECT `post_id` FROM `main` WHERE `linkpage` = `basename(FILE)`");
+
+mysqli_query($mysqli, "INSERT INTO `comment` ( `name`, `comment_id`, `post_id` ) VALUES ('$name', '$comment_id', '$post_id')");
+
+
+$comment = mysqli_query($mysqli, "SELECT * FROM `comment` WHERE `post_id` = 2");
+
+$rows = mysqli_fetch_all($comment, MYSQLI_ASSOC);
+
+//print_r($rows);
+
+$mysqli->close();
+
 ?>
 
 <!DOCTYPE html>
@@ -76,11 +96,26 @@ session_start();
           Шикарная фантастика. На удивление интересный сюжет, шикарно снят и поставлен. Рекомендую к просмотру. 
         </div>
         </div>
+        
+        <div class="reviews">
+          <?php foreach($rows as $row):?>
+        <div class="review_name">
+          <?php echo $row['name'];?>
+        </div>
+        <div class="review_text">
+          <?php echo $row['comment_id'];?>
+        </div>
+          <?php endforeach;?>
+        </div>
         <!-- Форма оставить отзыв -->
-        <?php
-          include "commentfilms.php";
-        ?> 
-    </div>
+        <div class="send">
+          <form id="review" action="show_assasin.php" method="POST">
+            <input name="review_name" type="text" placeholder="ваше имя" required>
+            <textarea name="review_text" required></textarea>
+            <input class="btn" type="submit" value="отправить">
+          </form>
+        </div>
+      </div>
   </div>
 <!-- Подвал сайта -->
   <?php
