@@ -1,3 +1,4 @@
+
 <?php 
   session_start();
 
@@ -53,7 +54,7 @@
            if($_SESSION['message']){
             echo '<p class="mess">'. $_SESSION['message'] .'</p>';
            }
-            unset($_SESSION['message']);
+            unset($_SESSION['message']);  
           ?>
         <input type="text" name="username" placeholder="Введите логин">
         <input type="password" name="pass" placeholder="Пароль">

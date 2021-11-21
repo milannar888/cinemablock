@@ -1,24 +1,33 @@
 <?php
+session_start(); // запускаем сессию 
+/*var_dump($post_id);// при необходимости выводим информацию о переменной также с помощью var_dump видим тип данных к которым относится переменная, выводит все типы данных, помогает в отладке кода
+echo $query; // выводит при необходимости числовые и строковые переменные
+exit; */ // выводит сообщение и прекращает выполнения текущего скрипта
 
-include 'bd.php';
-$name = filter_var(trim($_POST['review_name']),
-FILTER_SANITIZE_STRING);
-$comment_id = filter_var(trim($_POST['review_text']),
-FILTER_SANITIZE_STRING);
+include 'bd.php'; // include включает отдаленные файлы в данном случаем подключение к базе данных 
+$filename = basename(__FILE__); // эта функция возвращает имя текущего файла
+$query = sprintf("SELECT post_id FROM `main` WHERE linkpage =  '%s'", $filename); // пишем запрос к базе данных а именно к таблице main чтобы получить номер post_id где linkpage текущая страница 
+$result = mysqli_query($mysqli, $query); // выполняем запрос записанный выше, база данных возвращает нам нужный результат
 
-//$post_id = 2;
-$post_id = mysqli_query($mysqli, "SELECT `post_id` FROM `main` WHERE `linkpage` = `basename(FILE)`");
+$post_id = mysqli_fetch_row($result); // получаем массив с нужной выбранной строкой  
 
-mysqli_query($mysqli, "INSERT INTO `comment` ( `name`, `comment_id`, `post_id` ) VALUES ('$name', '$comment_id', '$post_id')");
+if ($_SERVER["REQUEST_METHOD"] === 'POST'){//прописываем условие в котором указываем каким методом был произведен запрос
 
+  $name = $_POST['review_name']; // данные введеные пользователем находятся в глобальном ассоциативном массиве $_POST переданным методом POST где по ключу name, получаем значение-введеные пользователем данные
+  $comment_id = $_POST['review_text']; // тут используется уже другой ключ атрибута name
 
-$comment = mysqli_query($mysqli, "SELECT * FROM `comment` WHERE `post_id` = 2");
+  mysqli_query($mysqli, "INSERT INTO `comment` (`name`, `comment_id`, `post_id` ) VALUES ('$name', '$comment_id', '$post_id[0]')"); //добавляем в базу данных а именно в таблицу comment значение тем самым заполнянем строку 
+ 
+  header('Location: ' . $filename); // переадресуем страницу на этот же файл( перезагружаем )
+  exit; // прекращает выполнения текущего скрипта
+ 
+}
 
-$rows = mysqli_fetch_all($comment, MYSQLI_ASSOC);
+$comment = mysqli_query($mysqli, "SELECT * FROM `comment` WHERE post_id = '$post_id[0]'"); // выполняем запрос на получение данных из таблицы comment где post_id полученое число ранее (номер id в таблице main)
+ 
+$rows = mysqli_fetch_all($comment, MYSQLI_ASSOC); // возвращаем двумерный массив со всеми записями из последнего запроса
 
-//print_r($rows);
-
-$mysqli->close();
+$mysqli->close(); // закрываем подключение к базе даннных, в целях безопасности
 
 ?>
 
@@ -97,21 +106,21 @@ $mysqli->close();
         </div>
         </div>
         
-        <div class="reviews">
-          <?php foreach($rows as $row):?>
+       <div class="reviews">
+          <?php foreach($rows as $row):?>  <!--делаем перебор полученного массива-$rows со значениями $row-->
         <div class="review_name">
-          <?php echo $row['name'];?>
+          <?php echo $row['name'];?> <!--получаем значение из массива с ключем name--> 
         </div>
         <div class="review_text">
-          <?php echo $row['comment_id'];?>
+          <?php echo $row['comment_id'];?> <!-- получаем значение из массива с ключем comment_id--> 
         </div>
-          <?php endforeach;?>
+          <?php endforeach;?> <!--закрываем цикл--> 
         </div>
         <!-- Форма оставить отзыв -->
         <div class="send">
-          <form id="review" action="show_assasin.php" method="POST">
+          <form id="review" action="<?php echo ($_SERVER["PHP_SELF"]);?>" method="POST">
             <input name="review_name" type="text" placeholder="ваше имя" required>
-            <textarea name="review_text" required></textarea>
+            <textarea name="review_text" required ></textarea>
             <input class="btn" type="submit" value="отправить">
           </form>
         </div>

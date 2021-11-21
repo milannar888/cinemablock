@@ -1,5 +1,27 @@
 <?php
 session_start();
+
+include 'bd.php';  
+$filename = basename(__FILE__); 
+$query = sprintf("SELECT post_id FROM `main` WHERE linkpage =  '%s'", $filename); 
+$result = mysqli_query($mysqli, $query); 
+
+$post_id = mysqli_fetch_row($result);   
+
+if ($_SERVER["REQUEST_METHOD"] === 'POST'){
+  $name = $_POST['review_name']; 
+  $comment_id = $_POST['review_text']; 
+  mysqli_query($mysqli, "INSERT INTO `comment` (`name`, `comment_id`, `post_id` ) VALUES ('$name', '$comment_id', '$post_id[0]')"); 
+ 
+  header('Location: ' . $filename); 
+  exit; 
+}
+
+$comment = mysqli_query($mysqli, "SELECT * FROM `comment` WHERE post_id = '$post_id[0]'"); 
+$rows = mysqli_fetch_all($comment, MYSQLI_ASSOC); 
+
+$mysqli->close(); 
+
 ?>
 
 <!DOCTYPE html>
@@ -76,10 +98,24 @@ session_start();
           Интересный фильм, сложно оторваться. Захватывающий сюжет. Держит в напряжении все время просмотра. 
         </div>
         </div>
+        <div class="reviews">
+          <?php foreach($rows as $row):?>
+        <div class="review_name">
+          <?php echo $row['name'];?>
+        </div>
+        <div class="review_text">
+          <?php echo $row['comment_id'];?>
+        </div>
+          <?php endforeach;?>
+        </div>
         <!-- Форма оставить отзыв -->
-        <?php
-          include "commentfilms.php";
-        ?> 
+        <div class="send">
+          <form id="review" action="<?php echo ($_SERVER["PHP_SELF"]);?>" method="POST">
+            <input name="review_name" type="text" placeholder="ваше имя" required>
+            <textarea name="review_text" required ></textarea>
+            <input class="btn" type="submit" value="отправить">
+          </form>
+        </div> 
     </div>
   </div>
 <!-- Подвал сайта -->
