@@ -2,7 +2,7 @@
   
   include "bd.php";
 
-  $result_main = mysqli_query($mysqli, 'SELECT * FROM rating');
+  $result_main = mysqli_query($mysqli, 'SELECT * FROM main');
 
   $rows_main = mysqli_fetch_all($result_main, MYSQLI_ASSOC);
   
@@ -16,7 +16,7 @@
     <h2>Рейтинг фильмов</h2>
     <ul>
     <?php foreach($rows_main as $row_main):?>
-      <li><a href="<?php echo $row_main['linkrating'];?>"><?php echo $row_main['name'];?></a><span class="rating_sidebar"><?php echo $row_main['rating'];?></span></li>
+      <li><a class="link_sidebar" href="<?php echo $row_main['linkpage'];?>"><?php echo $row_main['name'];?></a><span class="rating_sidebar"><?php echo $row_main['rating'];?></span></li>
     <?php endforeach;?>
     </ul>
   </div>

@@ -3,7 +3,7 @@
 
   include "bd.php";
 
-  $result = mysqli_query($mysqli, 'SELECT * FROM series');
+  $result = mysqli_query($mysqli, 'SELECT * FROM main WHERE type = "series"');
 
   $rows = mysqli_fetch_all($result, MYSQLI_ASSOC);
   
@@ -51,10 +51,10 @@
 <!-- Основной контент по середине страница о фильмах -->
     <div class="content"><?php foreach($rows as $row):?>
       <div class="info_film">
-        <img src="img/<?php echo $row['img'];?>">
+        <img src="img/<?php echo $row['img'];?>" width="150" height="200">
     <?php echo $row['maintext'];?>
           <!--Ещё ребёнком Тан Сань потерял мать, и вскоре отец отправил его обучаться боевым искусствам. В шестилетнем возрасте Сань был принят в академию Ношань и там крепко подружился с несколькими ребятами. Через некоторое время, как один из самых способных учеников, парень поступает в академию Тайшань, где преподают пятеро выдающихся мастеров.-->
-          <div class="button"><a href="<?php echo $row['linkseries'];?>">Смотреть</a>
+          <div class="button"><a href="/page.php?id=<?php echo $row['post_id'];?>">Смотреть</a>
           </div>
       </div>
         <!--<div class="info_film">

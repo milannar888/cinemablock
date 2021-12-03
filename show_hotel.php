@@ -64,7 +64,7 @@ $mysqli->close();
     <div class="content">
       <h1>Отель феникс</h1>
         <!-- Видео -->
-        <iframe width="560" height="315" src="https://www.youtube.com/embed/DPHI5ekSURk" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+        <iframe width="560" height="315" src="https://www.youtube.com/embed/293pKHXabwY" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
         <div class="info_film_page">
           <span class="label">рейтинг: </span><span class="value">7.4 / 10</span>
           <span class="label">год: </span><span class="value">2021</span>

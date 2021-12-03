@@ -39,7 +39,6 @@ if($pass === $pass2){
   mysqli_query($mysqli, "INSERT INTO `register` ( `username`, `email`, `phone`, `pass` ) VALUES ('$username', '$email', '$phone', '$pass')");
   $_SESSION['message'] = 'регистрация прошла успешно';
     header( 'Location: ../lk.php' );
-    var_dump($_SESSION['message']);
 }else{
   $_SESSION['message'] = "пароли несовпадают";
   header( 'Location: ../register.php' );

@@ -1,7 +1,7 @@
 <?php 
-  session_start();
+ session_start();
 
-  if($_SESSION['user']){
+  if(isset($_SESSION['user'])){
     header('Location: lk.php');
   }
 ?>
@@ -58,7 +58,7 @@
         <p>У вас уже есть аккаунт? -  <a href='avto.php'>авторизируйтесь</a></p>
         <input class="button" type="submit" value="Зарегистрироваться"> 
         <?php 
-           if($_SESSION['message']){
+           if(isset($_SESSION['message'])){
             echo '<p class="mess">'. $_SESSION['message'] .'</p>';
            }
             unset($_SESSION['message']);

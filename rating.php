@@ -3,7 +3,7 @@
   
   include "bd.php";
 
-  $result = mysqli_query($mysqli, 'SELECT * FROM rating');
+  $result = mysqli_query($mysqli, 'SELECT * FROM main');
 
   $rows = mysqli_fetch_all($result, MYSQLI_ASSOC);
   
@@ -56,14 +56,14 @@
       <table class="rating">
         <tr>
           <th></th>
-          <th>Фильмы</th>
+          <th>Фильмы и Сериалы</th>
           <th class="center">Год</th>
           <th class="center">Рейтинг</th>
         </tr>
       <?php foreach($rows as $row):?>
         <tr>
           <td class="center"><img src="img/<?php echo $row['img'];?>"></td>
-          <td><?php echo $row['id'];?> <a href="<?php echo $row['linkrating'];?>"><?php echo $row['name'];?></a></td>
+          <td><?php echo $row['post_id'];?> <a href="<?php echo $row['linkpage'];?>"><?php echo $row['name'];?></a></td>
           <td class="center"><?php echo $row['year'];?></td>
           <td class="center rating"><?php echo $row['rating'];?></td>
         </tr>

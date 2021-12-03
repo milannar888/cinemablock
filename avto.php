@@ -1,5 +1,5 @@
-
 <?php 
+
   session_start();
 
   if($_SESSION['user']){
@@ -51,7 +51,7 @@
 <!-- Форма авторизации-->
         <form  method="POST" action="vendor/avtobd.php">
         <?php 
-           if($_SESSION['message']){
+           if(isset($_SESSION['message'])){
             echo '<p class="mess">'. $_SESSION['message'] .'</p>';
            }
             unset($_SESSION['message']);  

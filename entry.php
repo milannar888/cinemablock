@@ -3,7 +3,7 @@
     <h2>Вход</h2>
     <?php 
     
-    if($_SESSION['user']){?>
+    if(isset($_SESSION['user'])){?>
       <div class="btn_entry"><a href="lk.php">Личный кабинет</a></div>
       <?php }else{?>
       <div class="btn_entry"><a href="avto.php">Вход</a></div>

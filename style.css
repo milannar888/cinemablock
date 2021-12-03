@@ -152,6 +152,12 @@ ul.menu li a:hover{
 .sidebar .rating_sidebar{
   float: right;
 }
+.rating_sidebar{
+  font-size: 13px;
+}
+.link_sidebar{
+  font-size: 18px;
+}
 /* Стили для Основного контента по середине */
 .content{
   /*text-align: left;*/
