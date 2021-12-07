@@ -6,12 +6,9 @@
   $result = mysqli_query($mysqli, 'SELECT * FROM main');
 
   $rows = mysqli_fetch_all($result, MYSQLI_ASSOC);
-  
-  //print_r($rows);
-  
-  $mysqli->close();
-  
 
+  $mysqli->close();
+ 
 ?>
 
 <!DOCTYPE html>
@@ -24,8 +21,7 @@
   <title>КиноБлок</title>
   <link rel="stylesheet" href="style.css">
 </head>
-<body>
-  
+<body> 
 <div class="main">
 <!-- Шапка страницы -->
   <?php
@@ -63,29 +59,11 @@
       <?php foreach($rows as $row):?>
         <tr>
           <td class="center"><img src="img/<?php echo $row['img'];?>"></td>
-          <td><?php echo $row['post_id'];?> <a href="<?php echo $row['linkpage'];?>"><?php echo $row['name'];?></a></td>
+          <td><?php echo $row['post_id'];?> <a href="/page.php?id=<?php echo $row['post_id'];?>"><?php echo $row['name'];?></a></td>
           <td class="center"><?php echo $row['year'];?></td>
           <td class="center rating"><?php echo $row['rating'];?></td>
         </tr>
       <?php endforeach;?>
-          <!--<tr>
-            <td class="center"><img src="img/palma.jpg"></td>
-            <td>2. <a href="show_palma.php">Пальма</a></td>
-            <td class="center">2021</td>
-            <td class="center rating">7.3</td>
-          </tr>
-          <tr>
-            <td class="center"><img src="img/Assasin.jpg"></td>
-            <td>3. <a href="show_assasin.php">Ассасин: битва миров</a></td>
-            <td class="center">2021</td>
-            <td class="center rating">6.2</td>
-          </tr>
-          <tr>
-            <td class="center"><img src="img/devitaev2.jpg"></td>
-            <td>4. <a href="show_devitaev.php">Девятаев</a></td>
-            <td class="center">2021</td>
-            <td class="center rating">6.2</td>
-          </tr>-->
       </table>       
     </div>
   </div>     

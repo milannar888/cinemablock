@@ -9,8 +9,6 @@
 
   $rows5 = mysqli_fetch_all($result5, MYSQLI_ASSOC);
   
-  //print_r($rows);
-  
   $mysqli->close(); 
 ?>
 
@@ -29,5 +27,3 @@
     </ul>
   </div>
 </div>
-
-

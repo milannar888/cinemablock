@@ -53,7 +53,7 @@ if(!$_SESSION['user']){
         <div class="button"><a href="vendor/exit.php">Выход</a></div >
      </div >   
     </div > 
-    </div >
+  </div >
 <!-- Подвал сайта -->
     <?php
       include "footer.php";

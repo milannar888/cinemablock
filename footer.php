@@ -1,4 +1,3 @@
-
 <div class="footer">  
   <p>
     <a href="index.php">Главная</a> |

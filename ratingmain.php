@@ -11,12 +11,11 @@
   $mysqli->close();
   
 ?>
-
 <div class="sidebar">
-    <h2>Рейтинг фильмов</h2>
+  <h2>Рейтинг фильмов</h2>
     <ul>
     <?php foreach($rows_main as $row_main):?>
-      <li><a class="link_sidebar" href="<?php echo $row_main['linkpage'];?>"><?php echo $row_main['name'];?></a><span class="rating_sidebar"><?php echo $row_main['rating'];?></span></li>
+      <li><a class="link_sidebar" href="/page.php?id=<?php echo $row_main['post_id'];?>"><?php echo $row_main['name'];?></a><span class="rating_sidebar"><?php echo $row_main['rating'];?></span></li>
     <?php endforeach;?>
     </ul>
   </div>
