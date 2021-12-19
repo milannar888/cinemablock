@@ -182,6 +182,12 @@ ul.menu li a:hover{
   width: 22%;
   height: 190px;
 }
+.link{
+  font-size: 2.2em;
+  display: block;
+  text-align: center;
+  padding-bottom: 2%;
+}
 /* Стили для поста на странице */
 .posts .posts_content{
   font-size: 1em;

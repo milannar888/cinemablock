@@ -1,19 +1,17 @@
 <?php
-session_start();
-
 if (empty($_GET['id'])) {
-  http_response_code(404);
+  echo "Empty id";
   exit;
 }
+
+session_start();
 
 include "bd.php";
 
 function get_by_id($id){
   global $mysqli;
- $resul = $mysqli->query("SELECT * FROM `main` WHERE post_id = '$id'");
-  foreach($resul as $res){
-    return $res; 
-  }
+ $res = $mysqli->query("SELECT * FROM `main` WHERE post_id = '$id'");
+ return mysqli_fetch_assoc($res);
 }
 
 $res = get_by_id($_GET['id']);
@@ -35,13 +33,14 @@ $mysqli->close();
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
-<div class="main">
-<!-- Шапка страницы -->
-    <?php
+ <div class="main">
+ <!-- Шапка страницы -->
+     <?php
       $page = 'films';
-      include "header.php";
-    ?>
-<!-- Основной контент -->
+     $page = $res['type'];
+       include "header.php";
+     ?>
+ <!-- Основной контент -->
     <div class="site_content"> 
       <div class="sidebar_container">
 <!-- Первый блок поиск -->
