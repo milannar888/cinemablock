@@ -1,14 +1,25 @@
 <?php
   session_start();
+
+  /*if (empty($_POST['search_query'])) {
+    $error = 'По вашему запросу ничего не найдено!';
+  }*/
   
   include "bd.php";
-  
+
+  /*$filename = basename('_FILE_'); 
+  var_dump($filename);
+ */
       if ($_SERVER["REQUEST_METHOD"] === 'POST'){  
       $search = $_POST['search_field'];  
-      $result = mysqli_query($mysqli, "SELECT * FROM main WHERE `name` LIKE '%$search%'");
-      $rows = mysqli_fetch_all($result, MYSQLI_ASSOC); 
-    }
-    
+      $result = mysqli_query($mysqli, "SELECT * FROM main WHERE `name` LIKE '%$search%'"); 
+      $rows = mysqli_fetch_all($result, MYSQLI_ASSOC);  
+      }
+      if (!empty($search)) {
+        $error = 'По вашему запросу ничего не найдено!';  
+      }
+      
+
   $mysqli->close();
 ?>
 <!DOCTYPE html>
@@ -25,10 +36,13 @@
   
   <div class="main">
 <!-- Шапка страницы --> 
-  <?php
-    $page = 'index';
-    include "header.php";
-  ?>
+    <?php
+    /*foreach($rows as $row){*/
+      $page = 'films';
+      /*$page = $row['type'];
+    }*/
+      include "header.php";
+     ?>
   
 <!-- Основной контент -->
 <div class="site_content"> 
@@ -53,16 +67,20 @@
   <div class="content">
     <h1>Результат поиска</h1>
     <div class="films_block">
-    <?php foreach($rows as $row):?>
+    <?php if (!empty($error)) {?>
+  <div class="error"><?php echo $error ?></div>
+    <?php  } foreach($rows as $row):?>
       <a href="/page.php?id=<?php echo $row['post_id'];?>" class ="link"><?php echo $row['name'];?></a>
       <div class="description_film">
       <a href="/page.php?id=<?php echo $row['post_id'];?>"><img src="img/<?php echo $row['img'];?>" alt="Круэлла"></a>
-      <?php echo $row['content'];?>
+    <?php echo $row['content'];?>
       </div>
     <?php endforeach;?>
     </div>
+  </div>
     </div>
   </div>
+  
 <!-- Подвал сайта -->
   <?php
     include "footer.php";

@@ -9,7 +9,7 @@ session_start();
 include "bd.php";
 
 function get_by_id($id){
-  global $mysqli;
+ global $mysqli;
  $res = $mysqli->query("SELECT * FROM `main` WHERE post_id = '$id'");
  return mysqli_fetch_assoc($res);
 }
@@ -37,7 +37,7 @@ $mysqli->close();
  <!-- Шапка страницы -->
      <?php
       $page = 'films';
-     $page = $res['type'];
+      $page = $res['type'];
        include "header.php";
      ?>
  <!-- Основной контент -->
