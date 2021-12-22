@@ -188,6 +188,11 @@ ul.menu li a:hover{
   text-align: center;
   padding-bottom: 2%;
 }
+.error{
+  font-size: 1.5em;
+  text-align: center;
+  color: red;
+}
 /* Стили для поста на странице */
 .posts .posts_content{
   font-size: 1em;
