@@ -26,10 +26,14 @@
   <div class="main">
 <!-- Шапка страницы --> 
     <?php
-      /*foreach($rows as $row){*/
+    if (!empty($result->num_rows>0)) {
+      foreach($rows as $row){
       $page = 'films';
-      /*$page = $row['type'];
-    }*/
+      $page = $row['type'];  
+      }
+    }else if (empty($result->num_rows)){
+      $page = 'films';
+    }
       include "header.php";
      ?>
   
@@ -56,7 +60,7 @@
   <div class="content">
     <h1>Результат поиска</h1>
     <div class="films_block">
-    <?php if (!empty($result->num_rows == 0)) {?>
+    <?php if (empty($result->num_rows)) {?>
   <div class="error"><?php echo 'По вашему запросу ничего не найдено!' ?></div>
     <?php  } ?>
     <?php foreach($rows as $row):?>

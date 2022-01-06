@@ -26,7 +26,7 @@ input, textarea{
 h1, h2{
   font: normal 170% 'century gothic', arial;
   margin: 0 0 15px 0;
-  padding: 15px 0 5px 0;
+  padding: 15px 0 0 0;
   color: #000;
 }
 h2{
@@ -143,14 +143,20 @@ ul.menu li a:hover{
 } */
 /* Стили для четвертого блока рейтинг фильмов */
 .sidebar ul{
+  list-style-type: none;
+  overflow-y: scroll;
+  max-height: 230px;
   margin: 0;
+
 }
 .sidebar ul li{
-  list-style-type: none;
+  /*list-style-type: none;*/
   margin: 0 0 0 0;
+  
 }
 .sidebar .rating_sidebar{
   float: right;
+  margin-right: 10px;
 }
 .rating_sidebar{
   font-size: 13px;
@@ -316,6 +322,7 @@ margin-bottom: 4%;
 table{
   width: 100%;
   border: solid 1px #f4f4f4;
+  
 }
 td{
   padding: 2%;
@@ -329,8 +336,13 @@ td img{
   text-align: center;
 }
 .rating{
-  font-weight: bold;
+  font-weight: bold; 
 }
+/*.ratings{
+  list-style-type: none;
+  overflow-y: scroll;
+  max-height: 820px;
+}*/
 .about_film{
   margin-bottom: 5%;
   background-color: #f9f9f9;
@@ -368,6 +380,38 @@ td img{
 .footer p{
   padding: 0 0 10px 0;
 }
+
+
+.gallery img { display: block; border: none; }
+:after, :before { -webkit-box-sizing: border-box; box-sizing: border-box; }
+
+
+[data-hidden = true] { display: none; }
+[data-hidden = false] { display: block; }
+
+/* transition */
+.nav-ctrl span, .dots-ctrl li { -webkit-transition: all 0.3s; transition: all 0.3s; }
+
+/*** CONTENT ***/
+.gallery { width: 100%; visibility: hidden; margin: 0 auto 30px; }
+.slider { width: 100%; max-width: 1024px; position: relative; overflow: hidden; margin: 0 auto; }
+.stage { overflow: hidden; }
+	.stage > div { float: left; position: relative; }
+		.stage > div img { width: 90%; max-width: 800px; height: auto; border-radius: 5px;
+      border: solid 5px #dad7d5;
+      height: 190px;}
+
+.control { width: 100%; position: relative; }
+.nav-ctrl { text-align: center; margin-top: 30px; }
+	.nav-ctrl span { width: 100px; height: 40px; display: inline-block; font-weight: 500; font-size: 13px; line-height: 40px; color: #eee; font-family: 'Roboto', sans-serif; text-transform: uppercase; text-align: center; margin: 5px 5px; border: solid 1px #7268ad;; border-radius: 5px; outline: none; -webkit-user-select: none; user-select: none; background-color: #7268ad;; cursor: pointer; -webkit-transition: all 0.3s; transition: all 0.3s; }
+	.nav-ctrl span:hover { border-color: #7268ad;; background-color: #7268ad;; }
+	.nav-ctrl .disable, .nav-ctrl .disable:hover { border: solid 1px #7268ad;; background-color: #7268ad;; opacity: 0.4; cursor: default; }
+.dots-ctrl { text-align: center; margin-top: 15px; }
+	.dots-ctrl li { width: 10px; height: 10px; display: inline-block; border-radius: 50%; background-color: #7268ad;; opacity: 0.4; cursor: pointer; margin-left: -15px;}
+	.dots-ctrl li + li { margin-left: 10px; }
+	.dots-ctrl .active, .dots-ctrl li:hover { opacity: 1; }
+
+
 /* Адаптивная верстка */
 @media only screen
 and (min-device-width: 320px)
@@ -437,13 +481,14 @@ and (max-device-width: 568px){
     font: normal 110% 'century gothic', arial;
   }
   .films_block img{
-    width: 43%;
+    width: 9%;
   }
   .posts_content p{
     line-height: 1.5em;
     padding: 3%;
     text-align: left;
   }
+  
   .posts p{
     font-size: 120%;
   }

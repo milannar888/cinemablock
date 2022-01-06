@@ -49,6 +49,7 @@
   ?>
 <!-- Основной контент по середине страница рейтинг фильмов -->
     <div class="content">
+      <div class= "ratings">
       <table class="rating">
         <tr>
           <th></th>
@@ -64,7 +65,8 @@
           <td class="center rating"><?php echo $row['rating'];?></td>
         </tr>
       <?php endforeach;?>
-      </table>       
+      </table> 
+      </div>        
     </div>
   </div>     
 <!-- Подвал сайта -->

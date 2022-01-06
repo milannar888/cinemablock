@@ -55,18 +55,58 @@
     ?>
 <!-- Основной контент по середине -->
   <div class="content">
+  <!--<div class="wrap">-->
     <h1>Новые фильмы</h1>
     <div class="films_block">
+     <div class="gallery" data-setting="setup1">
+		    <div class="slider">
+			    <div class="stage">
+      
     <?php foreach($rows as $row):?>
-      <a href="/page.php?id=<?php echo $row['post_id'];?>"><img src="img/<?php echo $row['img'];?>" alt="Круэлла"></a>
+      <div>
+      <a href="/page.php?id=<?php echo $row['post_id'];?>"><img src="img/<?php echo $row['img'];?>" alt="<?php echo $row['name'];?>"></a>
+      </div>
     <?php endforeach;?>
     </div>
+		</div>
+		<div class="control">
+			<div class="nav-ctrl" data-hidden="true">
+				<span class="prev" data-shift="prev">Назад</span>
+				<span class="next" data-shift="next">Вперед</span>
+			</div>
+			<ul class="dots-ctrl" data-hidden="true"></ul>
+		</div>
+	</div>
+  </div>
+ 
+    <!--</div>-->
+
+    
     <h1>Новые сериалы</h1>
-    <div class="films_block">
+    <div class="films_block">	  
+     <div class="gallery" data-setting="setup1">
+		    <div class="slider">
+			    <div class="stage">
+               
       <?php foreach($rows2 as $row2):?>  
-        <a href="/page.php?id=<?php echo $row2['post_id'];?>"><img src="img/<?php echo $row2['img'];?>" alt="Круэлла"></a>
+        <div>
+          
+          <a href="/page.php?id=<?php echo $row2['post_id'];?>"><img src="img/<?php echo $row2['img'];?>" alt="<?php echo $row2['name'];?>" class="shown"></a>
+          
+        </div> 
       <?php endforeach;?>
-    </div>
+      </div>
+		</div>
+		<div class="control">
+			<div class="nav-ctrl" data-hidden="true">
+				<span class="prev" data-shift="prev">Назад</span>
+				<span class="next" data-shift="next">Вперед</span>
+			</div>
+			<ul class="dots-ctrl" data-hidden="true"></ul>
+		</div>
+	</div>
+  </div>
+  </div>
 <!-- Пост на странице --> 
   <div class="posts"><?php foreach($rows3 as $row3):?>
     <hr>
@@ -85,7 +125,59 @@
   <?php
     include "footer.php";
   ?>
-
 </div>
+<script type="text/javascript">
+		const setting = {
+			setup1: {
+				// включаем постраничную навигацию
+				dots: true,
+				// включаем управление с клавиатуры клавишами навигации "вправо / влево"
+				keyControl: true,
+				// настройки галереи в зависимости от разрешения
+				adaptive: {
+					// настройка работает в диапазоне разрешений 320-560px
+					320: {
+						// одновременно выводится 1 элемент
+						visibleItems: 1,
+						// расстояние между изображениями 5px
+						margin: 5,
+						// запрещаем постраничную навигацию
+						dots: false
+					},
+					// настройка работает в диапазоне разрешений 560-768px
+					560: {
+						// одновременно выводится 1 элемент
+						visibleItems: 2,
+						// расстояние между изображениями 5px
+						margin: 5,
+						// запрещаем постраничную навигацию
+						dots: false
+					},
+					// настройка работает в диапазоне разрешений 768-1024px
+					768: {
+						// одновременно выводятся 2 элемента
+						visibleItems: 3,
+					},
+					// настройка работает в диапазоне разрешений 1024 и выше
+					1024: {
+						// одновременно выводятся 3 элемента
+						visibleItems: 4
+					}
+				}
+			},
+			setup2: {
+				// одновременно выводится 4 элемента
+				visibleItems: 4,
+				// разрешаем постраничную навигацию
+				dots: true,
+				// разрешаем управление с клавиатуры клавишами навигации "вправо / влево"
+				keyControl: true,
+				// выключаем адаптивность
+				responsive: false
+			}
+		};
+	</script>
+
+<script src="js/script2.js"></script>
 </body>
 </html>
